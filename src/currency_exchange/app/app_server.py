@@ -5,7 +5,7 @@ from typing import AsyncGenerator
 from fastapi import FastAPI
 import redis
 
-from currency_exchange.gateways.postgresql.database import Database
+from currency_exchange.gateways.database.postgresql.database import Database
 from currency_exchange.api.exchange_handler import exchange_router
 from currency_exchange.api.currency_handler import currency_router
 

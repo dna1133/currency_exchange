@@ -34,6 +34,6 @@ class ExchangeSchema(BaseModel):
 
 
 class ExchangePairArgs:
-    def __init__(self, exch_from: str, exch_to: str):
-        self.exch_from = exch_from
-        self.exch_to = exch_to
+    def __init__(self, exchange_from: str, exchange_to: str):
+        self.exchange_from = exchange_from
+        self.exchange_to = exchange_to
