@@ -22,4 +22,4 @@ async def lifespan(_app: FastAPI) -> AsyncGenerator:
 
 db = {}
 
-app = FastAPI(title=settings.APPLICATION_TITTLE)
+app = FastAPI(title=settings.APPLICATION_TITTLE, lifespan=lifespan)
