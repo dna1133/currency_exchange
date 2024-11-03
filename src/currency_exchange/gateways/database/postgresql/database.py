@@ -1,9 +1,10 @@
 from contextlib import asynccontextmanager
 from typing import Any, AsyncGenerator
 
-from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
+
+from currency_exchange.core.configs import settings
 
 
 class Database:
@@ -51,3 +52,8 @@ class Database:
             raise
         finally:
             await session.close()
+
+
+assync_session_maker = Database(
+    url=settings.POSTGRES_URL, ro_url=settings.POSTGRES_URL
+).get_session

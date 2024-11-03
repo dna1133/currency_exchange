@@ -29,7 +29,8 @@ services:
       dockerfile: Dockerfile
     env_file:
       - .env
-    restart: always
+    restart: on-failure
+    network_mode: host
     ports:
       - "8000:8000"
     depends_on:

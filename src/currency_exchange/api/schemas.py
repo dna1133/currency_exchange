@@ -9,12 +9,12 @@ class CurrensySchema(BaseModel):
     name: str
     code: str
     sign: str
-    # oid: str
+    oid: str
 
     @classmethod
     def from_entity(cls, currency: Currency) -> "CurrensySchema":
         return cls(
-            # oid=currency.oid,
+            oid=currency.oid,
             name=currency.name,
             code=currency.code,
             sign=currency.sign,
@@ -22,13 +22,13 @@ class CurrensySchema(BaseModel):
 
 
 class ExchangeSchema(BaseModel):
-    # oid: str
+    oid: str
     rate: Decimal
 
     @classmethod
     def from_entity(cls, exchange: Exchange) -> "ExchangeSchema":
         return cls(
-            # oid=exchange.oid,
+            oid=exchange.oid,
             name=exchange.rate,
         )
 
