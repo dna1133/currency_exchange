@@ -1,12 +1,13 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from decimal import Decimal, getcontext
-from uuid import uuid4
+
+from currency_exchange.domain.entity.base import BaseEntity
 
 
 @dataclass
-class Exchange:
-    _rate: Decimal
-    oid: str = field(default_factory=uuid4)
+class ExchangeRate(BaseEntity):
+    _rate: Decimal | None = None
+
     getcontext().prec = 6
 
     @property

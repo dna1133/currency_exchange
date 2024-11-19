@@ -17,6 +17,7 @@ asyncpg = "^0.30.0"
 alembic = "^1.13.3"
 fastapi-cache = "^0.1.0"
 fastapi-cache2 = {extras = ["redis"], version = "^0.2.2"}
+punq = "^0.7.0"
 
 
 [build-system]

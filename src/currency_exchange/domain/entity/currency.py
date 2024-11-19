@@ -1,14 +1,14 @@
 from abc import ABC
-from dataclasses import dataclass, field
-from uuid import uuid4
+from dataclasses import dataclass
+
+from currency_exchange.domain.entity.base import BaseEntity
 
 
 @dataclass
-class BaseCurrency(ABC):
-    name: str
+class BaseCurrency(BaseEntity):
+    fullname: str
     code: str
     sign: str
-    oid: str = field(default_factory=uuid4())
 
 
 @dataclass

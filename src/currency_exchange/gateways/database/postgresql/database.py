@@ -1,3 +1,4 @@
+from abc import ABC, abstractmethod
 from contextlib import asynccontextmanager
 from typing import Any, AsyncGenerator
 
@@ -7,12 +8,16 @@ from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_asyn
 from currency_exchange.core.configs import settings
 
 
-class Database:
+class BaseDB(ABC):
+    @abstractmethod
+    async def get_session(self) -> AsyncGenerator[AsyncSession, Any]: ...
+
+
+class Database(BaseDB):
     def __init__(self, url: str, ro_url: str) -> None:
         self._async_engine = create_async_engine(
             url=url,
             pool_pre_ping=False,
-            # echo=False,
             isolation_level="READ COMMITTED",
         )
         self._async_session = async_sessionmaker(
@@ -23,7 +28,6 @@ class Database:
         self._read_only_async_engine = create_async_engine(
             url=ro_url,
             pool_pre_ping=False,
-            # echo=False,
             isolation_level="AUTOCOMMIT",
         )
         self._read_only_async_session = async_sessionmaker(
@@ -52,8 +56,3 @@ class Database:
             raise
         finally:
             await session.close()
-
-
-assync_session_maker = Database(
-    url=settings.POSTGRES_URL, ro_url=settings.POSTGRES_URL
-).get_session

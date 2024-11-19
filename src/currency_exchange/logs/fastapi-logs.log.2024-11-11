@@ -1,0 +1,33 @@
+2024-11-11 12:51:39,432 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-11 12:52:38,006 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-11 12:52:39,003 - currency_exchange.api.routers.currency - INFO - --- get_all_currencies
+2024-11-11 12:53:15,988 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-11 12:53:20,468 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-11 12:53:39,614 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-11 12:53:56,885 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-11 12:54:21,309 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-11 12:54:34,140 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-11 13:06:32,240 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-11 13:07:08,727 - currency_exchange.api.routers.exchange - INFO - <property object at 0x0000020D14A300E0>
+2024-11-11 13:07:57,092 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-11 13:07:58,210 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-11 13:08:47,068 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-11 13:08:48,141 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-11 13:08:50,790 - currency_exchange.api.routers.exchange - INFO - <class 'starlette.requests.Request'>
+2024-11-11 13:09:30,716 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-11 13:09:31,862 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-11 13:09:46,177 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-11 13:09:47,433 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-11 13:09:55,723 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-11 13:09:56,779 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-11 13:10:00,719 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-11 13:10:01,896 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-11 13:13:26,547 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-11 13:13:27,750 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-11 13:13:52,780 - currency_exchange.api.routers.currency - INFO - --- get_all_currencies
+2024-11-11 13:14:08,762 - currency_exchange.api.routers.currency - INFO - --- get_all_currencies
+2024-11-11 13:14:22,371 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-11 13:14:23,474 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-11 13:15:06,224 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-11 13:15:07,238 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-11 13:15:23,489 - src.currency_exchange.app.app_server - INFO - --- APP down
