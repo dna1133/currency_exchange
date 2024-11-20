@@ -10,6 +10,8 @@ from currency_exchange.api.responses.exchange_resposes import (
     patch_exchange_rate_responce,
     get_exchange_sum_responce,
 )
+from currency_exchange.services.base_api_service import BaseService
+from currency_exchange.services.exchange_api_sevice import ExchangeService
 
 
 router = APIRouter(
@@ -22,8 +24,10 @@ log = logging.getLogger(__name__)
 
 @router.get("/", responses=get_all_exchange_rates_responce)
 @cache(expire=30)
-async def get_all_exchange_rates():
-    return await {}
+async def get_all_exchange_rates(
+    service: BaseService = Depends(ExchangeService),
+):
+    return await service.get_all()
 
 
 @router.get("/{exchange_rate}", responses=get_exchange_rate_responce)

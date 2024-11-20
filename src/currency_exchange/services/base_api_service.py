@@ -13,11 +13,11 @@ class BaseService:
         query = select(cls._model).where(cls._model.code == code)
         async with cls.db.get_read_only_session() as session:
             res = await session.execute(query)
-            return res.scalars().all()
+            return res.scalars().one_or_none()
 
     @classmethod
     async def get_all(cls):
         query = select(cls._model)
         async with cls.db.get_read_only_session() as session:
             res = await session.execute(query)
-            return res.scalars().one_or_none()
+            return res.scalars().all()

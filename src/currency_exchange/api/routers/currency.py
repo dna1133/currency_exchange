@@ -1,10 +1,8 @@
 import logging
 from fastapi import APIRouter, Depends
-from sqlalchemy import select
 
 from fastapi_cache.decorator import cache
 
-from currency_exchange.core.conteiner import get_conteiner
 from currency_exchange.gateways.database.models.currencies import Currencies
 from currency_exchange.gateways.database.postgresql.database import BaseDB, Database
 from currency_exchange.api.responses.currency_responses import (
@@ -26,13 +24,9 @@ log = logging.getLogger(__name__)
 @router.get("/", responses=get_currencies_responce)
 @cache(expire=10)
 async def get_all_currencies(
-    conteiner=Depends(get_conteiner),
+    service: BaseService = Depends(CurrencyService),
 ):
-    db: BaseDB = conteiner.resolve(BaseDB)
-    query = select(Currencies)
-    async with db.get_session() as session:
-        res = await session.execute(query)
-        return res.scalars().all()
+    return await service.get_all()
 
 
 @router.get("/{currency}", responses=get_currency_responce)
