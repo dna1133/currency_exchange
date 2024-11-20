@@ -20,13 +20,13 @@ class ExchangeRate(BaseEntity):
         return self._rate
 
     @rate.setter
-    def rate(self, base_curr: Decimal, target_curr: Decimal) -> Decimal:
-        self._rate = base_curr / target_curr
+    def rate(self, rate) -> Decimal:
+        self._rate = rate
 
 
 class ExchangePair:
     def __init__(self, codes: str) -> None:
-        if len(codes != (settings.EXCHANGE_RATE_LEN * 2)):
-            raise ApplicationError("Wrong echange pair")
+        if len(codes) != (settings.EXCHANGE_RATE_LEN * 2):
+            raise ApplicationError("Wrong echange pair!")
         self.exchange_from = codes[: settings.EXCHANGE_RATE_LEN]
         self.exchange_to = codes[settings.EXCHANGE_RATE_LEN :]
