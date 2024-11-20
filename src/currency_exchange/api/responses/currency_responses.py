@@ -15,12 +15,8 @@ get_currency_responce = {
 
 post_currency_responce = {
     status.HTTP_200_OK: {
-        "description": "Currensy Added",
-        "content": {
-            "application/json": {
-                "schema": {"$ref": "#/components/schemas/CurrencySchema"},
-            },
-        },
+        "model": CurrencySchema,
+        "Description": "Addet currenncy success",
     },
     status.HTTP_400_BAD_REQUEST: {"model": ErrorSchema},
 }

@@ -33,9 +33,9 @@ app = FastAPI(title=settings.APPLICATION_TITTLE, lifespan=lifespan)
 app.include_router(exchange.router)
 app.include_router(currency.router)
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=["http://localhost:3000"],
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
