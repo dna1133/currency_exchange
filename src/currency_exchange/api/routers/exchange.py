@@ -22,29 +22,29 @@ log = logging.getLogger(__name__)
 
 @router.get("/", responses=get_all_exchange_rates_responce)
 @cache(expire=30)
-async def get_all_exchange_rates(request: Request):
+async def get_all_exchange_rates():
     return await {}
 
 
 @router.get("/{exchange_rate}", responses=get_exchange_rate_responce)
 @cache(expire=30)
-async def get_exchange_rate(request: Request):
+async def get_exchange_rate():
     return await {}
 
 
 @router.post("/", responses=post_exchange_rate_responce)
 @cache(expire=30)
-async def post_exchange_rate(request: Request):
+async def post_exchange_rate():
     return await {}
 
 
 @router.patch("/", responses=patch_exchange_rate_responce)
 @cache(expire=30)
-async def patch_exchange_rate(request: Request):
+async def patch_exchange_rate():
     return await {}
 
 
 @router.get("/exchange", responses=get_exchange_sum_responce)
 @cache(expire=30)
-async def get_exchange_sum(exch: ExchangePairArgs = Depends(), request=Request):
+async def get_exchange_sum(exch: ExchangePairArgs = Depends()):
     return {"exchange_from": exch.exchange_from, "exchange_to": exch.exchange_to}

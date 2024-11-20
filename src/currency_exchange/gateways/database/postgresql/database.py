@@ -11,6 +11,7 @@ from currency_exchange.core.configs import settings
 class BaseDB(ABC):
     @abstractmethod
     async def get_session(self) -> AsyncGenerator[AsyncSession, Any]: ...
+    async def get_read_only_session(self) -> AsyncGenerator[AsyncSession, Any]: ...
 
 
 class Database(BaseDB):
