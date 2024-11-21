@@ -11,6 +11,13 @@ class ExchangeSchema(BaseModel):
     rate: Decimal
 
 
+class ExchangeRateChangedSchema(BaseModel):
+    oid: str
+    base_currency_oid: str
+    target_currency_oid: str
+    rete: Decimal
+
+
 class ExchangePairAmountSchema(BaseModel):
     baseCurrency: CurrencySchema
     targetCurrency: CurrencySchema

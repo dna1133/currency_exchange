@@ -1,3 +1,4 @@
+from decimal import Decimal
 import logging
 from fastapi import APIRouter, Depends, HTTPException, Request
 from fastapi_cache.decorator import cache
@@ -34,11 +35,11 @@ async def get_all_exchange_rates(
 @router.get("/{exchange_rate}", responses=get_exchange_rate_responce)
 @cache(expire=30)
 async def get_exchange_rate(
-    exchange_pair_raw: str,
+    exchange_rate: str,
     service: BaseService = Depends(ExchangeService),
 ):
     try:
-        res = await service.get_exchange_rate(exchange_pair_raw)
+        res = await service.get_exchange_rate(exchange_rate)
     except ApplicationError as e:
         raise HTTPException(status_code=400, detail=e)
     return res
@@ -46,13 +47,22 @@ async def get_exchange_rate(
 
 @router.post("/", responses=post_exchange_rate_responce)
 @cache(expire=30)
-async def post_exchange_rate(service: BaseService = Depends(ExchangeService)):
-    return await {}
+async def post_exchange_rate(
+    base_currency_code: str,
+    target_currency_code: str,
+    rate: Decimal,
+    service: BaseService = Depends(ExchangeService),
+):
+    return await service.add_exchange_rate(
+        base_currency_code, target_currency_code, rate
+    )
 
 
-@router.patch("/", responses=patch_exchange_rate_responce)
+@router.patch("/{exchange_rate}", responses=patch_exchange_rate_responce)
 @cache(expire=30)
-async def patch_exchange_rate():
+async def patch_exchange_rate(
+    exchange_rate: str, rate: Decimal, service: BaseService = Depends(ExchangeService)
+):
     return await {}
 
 

@@ -1,0 +1,453 @@
+2024-11-20 09:20:12,892 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 09:20:31,547 - fastapi_cache.decorator - WARNING - Error retrieving cache key 'fastapi-cache::3521a8ac87db186bb20f26bf5d475a1f' from backend:
+Traceback (most recent call last):
+  File "E:\Prog\projects\python-projects\Zhukov_roadmap\currency_exchange\.venv\Lib\site-packages\redis\asyncio\connection.py", line 577, in connect
+    await self.retry.call_with_retry(
+  File "E:\Prog\projects\python-projects\Zhukov_roadmap\currency_exchange\.venv\Lib\site-packages\redis\asyncio\retry.py", line 59, in call_with_retry
+    return await do()
+           ^^^^^^^^^^
+  File "E:\Prog\projects\python-projects\Zhukov_roadmap\currency_exchange\.venv\Lib\site-packages\redis\asyncio\connection.py", line 922, in _connect
+    reader, writer = await asyncio.open_connection(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Prog\Programs\python\python3_12_3\Lib\asyncio\streams.py", line 48, in open_connection
+    transport, _ = await loop.create_connection(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Prog\Programs\python\python3_12_3\Lib\asyncio\base_events.py", line 1122, in create_connection
+    raise exceptions[0]
+  File "E:\Prog\Programs\python\python3_12_3\Lib\asyncio\base_events.py", line 1104, in create_connection
+    sock = await self._connect_sock(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Prog\Programs\python\python3_12_3\Lib\asyncio\base_events.py", line 1007, in _connect_sock
+    await self.sock_connect(sock, address)
+  File "E:\Prog\Programs\python\python3_12_3\Lib\asyncio\selector_events.py", line 651, in sock_connect
+    return await fut
+           ^^^^^^^^^
+  File "E:\Prog\Programs\python\python3_12_3\Lib\asyncio\selector_events.py", line 691, in _sock_connect_cb
+    raise OSError(err, f'Connect call failed {address}')
+ConnectionRefusedError: [Errno 10061] Connect call failed ('127.0.0.1', 6379)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\Prog\projects\python-projects\Zhukov_roadmap\currency_exchange\.venv\Lib\site-packages\fastapi_cache\decorator.py", line 178, in inner
+    ttl, cached = await backend.get_with_ttl(cache_key)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Prog\projects\python-projects\Zhukov_roadmap\currency_exchange\.venv\Lib\site-packages\fastapi_cache\backends\redis.py", line 16, in get_with_ttl
+    return await pipe.ttl(key).get(key).execute()  # type: ignore[union-attr,no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Prog\projects\python-projects\Zhukov_roadmap\currency_exchange\.venv\Lib\site-packages\redis\asyncio\client.py", line 1392, in execute
+    conn = await self.connection_pool.get_connection("MULTI", self.shard_hint)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Prog\projects\python-projects\Zhukov_roadmap\currency_exchange\.venv\Lib\site-packages\redis\asyncio\connection.py", line 1375, in get_connection
+    await connection.connect()
+  File "E:\Prog\projects\python-projects\Zhukov_roadmap\currency_exchange\.venv\Lib\site-packages\redis\asyncio\connection.py", line 585, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 10061 connecting to 127.0.0.1:6379. 10061.
+2024-11-20 09:20:33,607 - fastapi_cache.decorator - WARNING - Error setting cache key 'fastapi-cache::3521a8ac87db186bb20f26bf5d475a1f' in backend:
+Traceback (most recent call last):
+  File "E:\Prog\projects\python-projects\Zhukov_roadmap\currency_exchange\.venv\Lib\site-packages\redis\asyncio\connection.py", line 577, in connect
+    await self.retry.call_with_retry(
+  File "E:\Prog\projects\python-projects\Zhukov_roadmap\currency_exchange\.venv\Lib\site-packages\redis\asyncio\retry.py", line 59, in call_with_retry
+    return await do()
+           ^^^^^^^^^^
+  File "E:\Prog\projects\python-projects\Zhukov_roadmap\currency_exchange\.venv\Lib\site-packages\redis\asyncio\connection.py", line 922, in _connect
+    reader, writer = await asyncio.open_connection(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Prog\Programs\python\python3_12_3\Lib\asyncio\streams.py", line 48, in open_connection
+    transport, _ = await loop.create_connection(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Prog\Programs\python\python3_12_3\Lib\asyncio\base_events.py", line 1122, in create_connection
+    raise exceptions[0]
+  File "E:\Prog\Programs\python\python3_12_3\Lib\asyncio\base_events.py", line 1104, in create_connection
+    sock = await self._connect_sock(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Prog\Programs\python\python3_12_3\Lib\asyncio\base_events.py", line 1007, in _connect_sock
+    await self.sock_connect(sock, address)
+  File "E:\Prog\Programs\python\python3_12_3\Lib\asyncio\selector_events.py", line 651, in sock_connect
+    return await fut
+           ^^^^^^^^^
+  File "E:\Prog\Programs\python\python3_12_3\Lib\asyncio\selector_events.py", line 691, in _sock_connect_cb
+    raise OSError(err, f'Connect call failed {address}')
+ConnectionRefusedError: [Errno 10061] Connect call failed ('127.0.0.1', 6379)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\Prog\projects\python-projects\Zhukov_roadmap\currency_exchange\.venv\Lib\site-packages\fastapi_cache\decorator.py", line 191, in inner
+    await backend.set(cache_key, to_cache, expire)
+  File "E:\Prog\projects\python-projects\Zhukov_roadmap\currency_exchange\.venv\Lib\site-packages\fastapi_cache\backends\redis.py", line 22, in set
+    await self.redis.set(key, value, ex=expire)  # type: ignore[union-attr]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Prog\projects\python-projects\Zhukov_roadmap\currency_exchange\.venv\Lib\site-packages\redis\asyncio\client.py", line 513, in execute_command
+    conn = self.connection or await pool.get_connection(command_name, **options)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Prog\projects\python-projects\Zhukov_roadmap\currency_exchange\.venv\Lib\site-packages\redis\asyncio\connection.py", line 1375, in get_connection
+    await connection.connect()
+  File "E:\Prog\projects\python-projects\Zhukov_roadmap\currency_exchange\.venv\Lib\site-packages\redis\asyncio\connection.py", line 585, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 10061 connecting to 127.0.0.1:6379. 10061.
+2024-11-20 09:20:49,722 - fastapi_cache.decorator - WARNING - Error retrieving cache key 'fastapi-cache::3521a8ac87db186bb20f26bf5d475a1f' from backend:
+Traceback (most recent call last):
+  File "E:\Prog\projects\python-projects\Zhukov_roadmap\currency_exchange\.venv\Lib\site-packages\redis\asyncio\connection.py", line 577, in connect
+    await self.retry.call_with_retry(
+  File "E:\Prog\projects\python-projects\Zhukov_roadmap\currency_exchange\.venv\Lib\site-packages\redis\asyncio\retry.py", line 59, in call_with_retry
+    return await do()
+           ^^^^^^^^^^
+  File "E:\Prog\projects\python-projects\Zhukov_roadmap\currency_exchange\.venv\Lib\site-packages\redis\asyncio\connection.py", line 922, in _connect
+    reader, writer = await asyncio.open_connection(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Prog\Programs\python\python3_12_3\Lib\asyncio\streams.py", line 48, in open_connection
+    transport, _ = await loop.create_connection(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Prog\Programs\python\python3_12_3\Lib\asyncio\base_events.py", line 1122, in create_connection
+    raise exceptions[0]
+  File "E:\Prog\Programs\python\python3_12_3\Lib\asyncio\base_events.py", line 1104, in create_connection
+    sock = await self._connect_sock(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Prog\Programs\python\python3_12_3\Lib\asyncio\base_events.py", line 1007, in _connect_sock
+    await self.sock_connect(sock, address)
+  File "E:\Prog\Programs\python\python3_12_3\Lib\asyncio\selector_events.py", line 651, in sock_connect
+    return await fut
+           ^^^^^^^^^
+  File "E:\Prog\Programs\python\python3_12_3\Lib\asyncio\selector_events.py", line 691, in _sock_connect_cb
+    raise OSError(err, f'Connect call failed {address}')
+ConnectionRefusedError: [Errno 10061] Connect call failed ('127.0.0.1', 6379)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\Prog\projects\python-projects\Zhukov_roadmap\currency_exchange\.venv\Lib\site-packages\fastapi_cache\decorator.py", line 178, in inner
+    ttl, cached = await backend.get_with_ttl(cache_key)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Prog\projects\python-projects\Zhukov_roadmap\currency_exchange\.venv\Lib\site-packages\fastapi_cache\backends\redis.py", line 16, in get_with_ttl
+    return await pipe.ttl(key).get(key).execute()  # type: ignore[union-attr,no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Prog\projects\python-projects\Zhukov_roadmap\currency_exchange\.venv\Lib\site-packages\redis\asyncio\client.py", line 1392, in execute
+    conn = await self.connection_pool.get_connection("MULTI", self.shard_hint)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Prog\projects\python-projects\Zhukov_roadmap\currency_exchange\.venv\Lib\site-packages\redis\asyncio\connection.py", line 1375, in get_connection
+    await connection.connect()
+  File "E:\Prog\projects\python-projects\Zhukov_roadmap\currency_exchange\.venv\Lib\site-packages\redis\asyncio\connection.py", line 585, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 10061 connecting to 127.0.0.1:6379. 10061.
+2024-11-20 09:20:51,761 - fastapi_cache.decorator - WARNING - Error setting cache key 'fastapi-cache::3521a8ac87db186bb20f26bf5d475a1f' in backend:
+Traceback (most recent call last):
+  File "E:\Prog\projects\python-projects\Zhukov_roadmap\currency_exchange\.venv\Lib\site-packages\redis\asyncio\connection.py", line 577, in connect
+    await self.retry.call_with_retry(
+  File "E:\Prog\projects\python-projects\Zhukov_roadmap\currency_exchange\.venv\Lib\site-packages\redis\asyncio\retry.py", line 59, in call_with_retry
+    return await do()
+           ^^^^^^^^^^
+  File "E:\Prog\projects\python-projects\Zhukov_roadmap\currency_exchange\.venv\Lib\site-packages\redis\asyncio\connection.py", line 922, in _connect
+    reader, writer = await asyncio.open_connection(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Prog\Programs\python\python3_12_3\Lib\asyncio\streams.py", line 48, in open_connection
+    transport, _ = await loop.create_connection(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Prog\Programs\python\python3_12_3\Lib\asyncio\base_events.py", line 1122, in create_connection
+    raise exceptions[0]
+  File "E:\Prog\Programs\python\python3_12_3\Lib\asyncio\base_events.py", line 1104, in create_connection
+    sock = await self._connect_sock(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Prog\Programs\python\python3_12_3\Lib\asyncio\base_events.py", line 1007, in _connect_sock
+    await self.sock_connect(sock, address)
+  File "E:\Prog\Programs\python\python3_12_3\Lib\asyncio\selector_events.py", line 651, in sock_connect
+    return await fut
+           ^^^^^^^^^
+  File "E:\Prog\Programs\python\python3_12_3\Lib\asyncio\selector_events.py", line 691, in _sock_connect_cb
+    raise OSError(err, f'Connect call failed {address}')
+ConnectionRefusedError: [Errno 10061] Connect call failed ('127.0.0.1', 6379)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\Prog\projects\python-projects\Zhukov_roadmap\currency_exchange\.venv\Lib\site-packages\fastapi_cache\decorator.py", line 191, in inner
+    await backend.set(cache_key, to_cache, expire)
+  File "E:\Prog\projects\python-projects\Zhukov_roadmap\currency_exchange\.venv\Lib\site-packages\fastapi_cache\backends\redis.py", line 22, in set
+    await self.redis.set(key, value, ex=expire)  # type: ignore[union-attr]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Prog\projects\python-projects\Zhukov_roadmap\currency_exchange\.venv\Lib\site-packages\redis\asyncio\client.py", line 513, in execute_command
+    conn = self.connection or await pool.get_connection(command_name, **options)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Prog\projects\python-projects\Zhukov_roadmap\currency_exchange\.venv\Lib\site-packages\redis\asyncio\connection.py", line 1375, in get_connection
+    await connection.connect()
+  File "E:\Prog\projects\python-projects\Zhukov_roadmap\currency_exchange\.venv\Lib\site-packages\redis\asyncio\connection.py", line 585, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 10061 connecting to 127.0.0.1:6379. 10061.
+2024-11-20 09:21:49,689 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 09:21:50,982 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 09:22:11,571 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 09:22:12,893 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 09:22:26,996 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 09:22:28,228 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 09:22:50,145 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 09:22:51,288 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 09:23:06,228 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 09:24:22,734 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 09:26:30,677 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 09:26:31,907 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 09:27:57,043 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 09:27:58,378 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 09:28:33,393 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 09:28:34,618 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 09:31:58,635 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 09:34:43,401 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 09:37:51,532 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 09:38:03,666 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 09:38:09,916 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 09:38:11,056 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 09:38:22,460 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 09:38:23,774 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 09:39:10,303 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 09:39:11,415 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 09:52:41,856 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 09:55:27,581 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 09:56:25,364 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 09:56:26,487 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 09:57:39,187 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 09:57:40,478 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 09:58:04,372 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 09:58:05,499 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 09:58:42,942 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 09:58:44,085 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 09:59:32,441 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 09:59:33,562 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 09:59:58,679 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 09:59:59,767 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 10:02:09,909 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 10:02:11,319 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 10:02:28,501 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 10:02:29,887 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 10:03:02,164 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 10:03:03,492 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 10:04:41,043 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 10:04:42,397 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 10:05:37,190 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 10:05:53,429 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 10:13:48,053 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 10:13:49,378 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 10:20:28,745 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 10:20:29,997 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 10:24:13,797 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 10:24:15,247 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 10:24:54,749 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 10:24:55,934 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 10:27:41,306 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 10:27:42,690 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 10:27:47,450 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 10:27:48,829 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 10:29:22,653 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 10:29:23,874 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 10:29:29,088 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 10:29:30,624 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 10:30:37,289 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 10:30:38,244 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 10:30:39,723 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 10:30:40,909 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 10:33:03,933 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 10:33:05,320 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 10:34:01,763 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 10:34:02,942 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 10:35:06,549 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 10:35:07,736 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 10:38:56,691 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 10:38:58,173 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 10:39:19,336 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 10:39:20,641 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 10:40:39,575 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 10:40:40,891 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 11:21:39,748 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 11:21:41,489 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 11:21:57,995 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 11:21:58,936 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 11:22:14,747 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 11:22:15,837 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 11:26:29,479 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 11:26:30,872 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 11:27:17,506 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 11:27:18,646 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 11:28:31,129 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 11:28:32,608 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 11:29:49,916 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 11:29:51,167 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 11:30:27,806 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 11:30:28,947 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 11:30:43,340 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 11:30:44,636 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 11:33:48,916 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 11:33:50,176 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 11:34:52,668 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 11:34:53,977 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 11:35:49,008 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 11:35:50,195 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 11:37:41,843 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 11:37:43,266 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 11:38:00,035 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 11:38:01,191 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 11:38:28,426 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 11:38:29,557 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 11:38:50,657 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 11:38:51,766 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 11:39:12,299 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 11:39:23,486 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 11:39:41,118 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 11:39:42,289 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 11:41:36,116 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 11:41:37,435 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 11:42:51,481 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 11:42:52,507 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 11:42:56,194 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 11:42:57,435 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 11:49:12,458 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 11:49:14,071 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 11:49:14,400 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 12:26:02,225 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 12:26:38,015 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 12:26:39,323 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 12:28:37,375 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 12:28:38,653 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 12:28:50,601 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 12:28:51,962 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 12:29:22,457 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 12:29:23,683 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 12:29:27,322 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 12:29:28,627 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 12:29:55,197 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 12:29:56,446 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 12:32:53,200 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 12:33:37,170 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 12:33:43,427 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 12:33:44,831 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 12:34:44,767 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 12:48:15,583 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 12:49:03,958 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 12:58:56,859 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 13:06:20,787 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 13:06:22,206 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 13:06:25,326 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 13:10:34,393 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 13:16:26,059 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 13:16:27,411 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 13:19:58,055 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 13:19:59,538 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 13:22:56,503 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 13:22:57,810 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 13:25:43,602 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 13:25:44,668 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 13:34:43,280 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 13:34:44,613 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 13:36:43,135 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 13:36:44,662 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 13:38:09,969 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 13:38:11,440 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 13:38:28,223 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 13:38:29,391 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 13:40:14,758 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 13:40:16,051 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 13:40:24,439 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 13:40:25,741 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 13:40:47,625 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 13:40:49,131 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 13:41:46,892 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 13:41:48,204 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 13:42:08,573 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 13:42:09,552 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 13:45:37,084 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 13:46:35,786 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 13:47:52,328 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 13:47:53,627 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 13:49:09,487 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 13:49:10,465 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 13:49:23,459 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 13:49:24,703 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 13:49:47,005 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 13:49:48,092 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 13:50:12,727 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 13:50:13,773 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 13:51:04,356 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 13:51:05,427 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 13:51:34,650 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 13:51:35,941 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 13:52:28,255 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 13:52:29,296 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 13:52:44,786 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 13:52:45,832 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 13:52:56,556 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 13:52:57,498 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 14:53:19,785 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 14:53:21,185 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 14:54:07,204 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 14:54:08,569 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 14:54:21,556 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 14:54:23,057 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 14:54:30,976 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 14:54:32,453 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 14:54:43,007 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 14:54:44,695 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 14:55:43,522 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 14:55:45,202 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 14:58:15,839 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 14:58:17,150 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 15:01:23,450 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 15:01:25,145 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 15:02:06,721 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 15:02:07,862 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 15:02:13,643 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 15:02:14,872 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 15:02:16,281 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 15:02:17,517 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 15:02:37,962 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 15:02:39,348 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 15:16:37,769 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 15:16:39,125 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 15:17:44,680 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 15:17:45,919 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 15:19:21,829 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 15:19:23,368 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 15:19:49,578 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 15:19:50,986 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 15:20:43,170 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 15:20:44,382 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 15:21:04,948 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 15:21:06,281 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 15:22:09,156 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 15:22:10,475 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 15:23:34,170 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 15:23:35,533 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 15:24:24,173 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 15:24:25,407 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 15:51:27,752 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 15:51:29,363 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 15:53:13,515 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 15:53:15,132 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 15:53:47,084 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 15:53:48,643 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 15:54:47,404 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 15:54:48,754 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 15:55:18,548 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 15:55:20,041 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 15:56:38,359 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 15:56:39,581 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 16:00:42,183 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 16:00:43,725 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 16:02:27,124 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 16:02:28,704 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 16:10:13,293 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 16:10:14,721 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 16:10:48,079 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 16:10:50,045 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 16:11:19,015 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 16:11:20,210 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 16:11:36,846 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 16:11:38,039 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 16:12:27,047 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 16:12:28,457 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 16:14:09,113 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 16:14:10,795 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 16:15:07,125 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 16:16:25,083 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 16:18:29,968 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 16:18:31,396 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 16:19:20,990 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 16:19:22,364 - src.currency_exchange.app.app_server - INFO - --- APP started
+2024-11-20 16:20:03,310 - src.currency_exchange.app.app_server - INFO - --- APP down
+2024-11-20 16:20:04,536 - src.currency_exchange.app.app_server - INFO - --- APP started

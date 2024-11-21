@@ -23,6 +23,10 @@ class ExchangeRate(BaseEntity):
     def rate(self, rate) -> Decimal:
         self._rate = rate
 
+    def __str__(self) -> str:
+        return f"""{self.exchange_from=}, type = {type(self.exchange_from)}, \n 
+                    {self.exchange_to=}, type = {type(self.exchange_to)}"""
+
 
 class ExchangePair:
     def __init__(self, codes: str) -> None:
