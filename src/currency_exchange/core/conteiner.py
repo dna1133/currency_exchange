@@ -19,6 +19,6 @@ def _init_conteiner():
     container.register(BaseDB, Database, scope=punq.Scope.singleton, instance=db)
 
     redis = Redis(host=settings.REDIS_HOST, port=settings.REDIS_PORT)
-    container.register(Redis, instance=redis)
+    container.register(Redis, instance=redis, scope=punq.Scope.singleton)
 
     return container

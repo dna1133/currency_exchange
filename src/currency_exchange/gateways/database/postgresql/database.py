@@ -5,8 +5,6 @@ from typing import Any, AsyncGenerator
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 
-from currency_exchange.core.configs import settings
-
 
 class BaseDB(ABC):
     @abstractmethod

@@ -1,17 +1,16 @@
 import logging
 from fastapi import APIRouter, Depends
+from fastapi.encoders import jsonable_encoder
 
-from fastapi_cache.decorator import cache
-
-from currency_exchange.gateways.database.models.currencies import Currencies
-from currency_exchange.gateways.database.postgresql.database import BaseDB, Database
 from currency_exchange.api.responses.currency_responses import (
     get_currencies_responce,
     get_currency_responce,
     post_currency_responce,
 )
-from currency_exchange.services.base_api_service import BaseService
-from currency_exchange.services.currency_api_service import CurrencyService
+from currency_exchange.api.schemas.currency_schemas import CurrencySchema
+from currency_exchange.services.api_services.base_api_service import BaseService
+from currency_exchange.services.api_services.currency_api_service import CurrencyService
+from currency_exchange.services.cache_services.redis_service import CacheService
 
 router = APIRouter(
     prefix="/currensies",
@@ -19,22 +18,25 @@ router = APIRouter(
 )
 
 log = logging.getLogger(__name__)
+cache = CacheService()
 
 
 @router.get("/", responses=get_currencies_responce)
-@cache(expire=10)
+@cache.cached(expire=30)
 async def get_all_currencies(
     service: BaseService = Depends(CurrencyService),
 ):
-    return await service.get_all()
+    result = await service.get_all()
+    return result
 
 
 @router.get("/{code}", responses=get_currency_responce)
-@cache(expire=30)
+@cache.cached()
 async def get_currency_by_code(
     code: str, service: BaseService = Depends(CurrencyService)
 ):
-    return await service.find_one(code=code.upper())
+    result = await service.find_one(code=code.upper())
+    return result
 
 
 @router.post("", responses=post_currency_responce)
@@ -44,4 +46,5 @@ async def post_currensies(
     sign: str,
     service: BaseService = Depends(CurrencyService),
 ):
-    return await service.add_currency(code.upper(), fullname, sign)
+    result = await service.add_currency(code.upper(), fullname, sign)
+    return result

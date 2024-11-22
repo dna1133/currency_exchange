@@ -1,8 +1,9 @@
 from decimal import Decimal
 import logging
+from typing import Annotated
 from fastapi import APIRouter, Depends
 
-from currency_exchange.api.ischemas import ExchangePairArgs
+from currency_exchange.api.ischemas import ExchangePairArgs, exchange_params
 from currency_exchange.api.responses.exchange_resposes import (
     get_all_exchange_rates_responce,
     get_exchange_rate_responce,
@@ -34,15 +35,6 @@ async def get_all_exchange_rates(
     return result
 
 
-@router.get("/{exchange_rate}", responses=get_exchange_rate_responce)
-@cache.cached(expire=30)
-async def get_exchange_rate(
-    exchange_rate: str,
-    service: BaseService = Depends(ExchangeService),
-):
-    return await service.get_exchange_rate(exchange_rate)
-
-
 @router.post("/", responses=post_exchange_rate_responce)
 async def post_exchange_rate(
     base_currency_code: str,
@@ -50,23 +42,39 @@ async def post_exchange_rate(
     rate: Decimal,
     service: BaseService = Depends(ExchangeService),
 ):
-    return await service.add_exchange_rate(
-        base_currency_code, target_currency_code, rate
+    result = await service.add_exchange_rate(
+        base_currency_code.upper(), target_currency_code.upper(), rate
     )
+    return result
 
 
 @router.patch("/{exchange_rate}", responses=patch_exchange_rate_responce)
 async def patch_exchange_rate(
     exchange_rate: str, rate: Decimal, service: BaseService = Depends(ExchangeService)
 ):
-    return await service.patch_exchange_rate(exchange_pair_raw=exchange_rate, rate=rate)
+    result = await service.patch_exchange_rate(
+        exchange_pair_raw=exchange_rate.upper(), rate=rate
+    )
+    return result
 
 
 @router.get("/exchange", responses=get_exchange_sum_responce)
-@cache.cached(expire=30)
 async def get_exchange_sum(
-    ext: ExchangePairArgs = Depends(), service: BaseService = Depends(ExchangeService)
+    ext: Annotated[dict, Depends(exchange_params)],
+    service: BaseService = Depends(ExchangeService),
 ):
-    return await service.get_exchange_sum(
-        ext.exchange_from, ext.exchange_to, ext.amount
+
+    result = await service.get_exchange_sum(
+        ext["exchange_from"].upper(), ext["exchange_to"].upper(), ext["amount"]
     )
+    return result
+
+
+@router.get("/{ex_rate}", responses=get_exchange_rate_responce)
+@cache.cached(expire=30)
+async def get_exchange_rate(
+    ex_rate: str,
+    service: BaseService = Depends(ExchangeService),
+):
+    result = await service.get_exchange_rate(ex_rate.upper())
+    return result

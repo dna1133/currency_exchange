@@ -47,9 +47,6 @@ class CacheService(BaseCacheService):
         return decorator
 
     def _sqlalchemy_to_dict(self, obj):
-        # print(
-        #     f"-------------------{type(obj)}, {isinstance(obj.__class__, DeclarativeMeta)}"
-        # )
         if isinstance(obj.__class__, DeclarativeMeta):
             result = {
                 c.key: getattr(obj, c.key) for c in class_mapper(obj.__class__).columns

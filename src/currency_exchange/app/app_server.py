@@ -23,8 +23,6 @@ log = logging.getLogger(__name__)
 async def lifespan(_app: FastAPI) -> AsyncGenerator:
     logger_setup = LoggerSetup()
     log.info("--- APP started")
-    redis = Redis(host=settings.REDIS_HOST, port=settings.REDIS_PORT)
-    FastAPICache.init(RedisBackend(redis), prefix="fastapi-cache")
     yield
     log.info("--- APP down")
 
@@ -33,9 +31,9 @@ app = FastAPI(title=settings.APPLICATION_TITTLE, lifespan=lifespan)
 app.include_router(exchange.router)
 app.include_router(currency.router)
 
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=["http://localhost:3000"],
-#     allow_methods=["*"],
-#     allow_headers=["*"],
-# )
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)

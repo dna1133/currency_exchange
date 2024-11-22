@@ -6,8 +6,8 @@ from sqlalchemy import and_, insert, select
 from currency_exchange.domain.entity.exceptions import ApplicationError
 from currency_exchange.domain.entity.exchange import ExchangeRate, ExchangePair
 from currency_exchange.gateways.database.models.exchange_rates import ExchangeRates
-from currency_exchange.services.base_api_service import BaseService
-from currency_exchange.services.currency_api_service import CurrencyService
+from currency_exchange.services.api_services.base_api_service import BaseService
+from currency_exchange.services.api_services.currency_api_service import CurrencyService
 
 
 class ExchangeService(BaseService):
@@ -20,7 +20,7 @@ class ExchangeService(BaseService):
             exchange_pair = ExchangePair(exchange_pair_raw.upper())
         except ApplicationError as e:
             raise HTTPException(status_code=400, detail=e.message)
-        ex_rates_dict = cls._check_pair(
+        ex_rates_dict = await cls._check_pair(
             code_base=exchange_pair.exchange_from, code_target=exchange_pair.exchange_to
         )
         base_currency = ex_rates_dict["base"]
@@ -54,7 +54,7 @@ class ExchangeService(BaseService):
             )
             output.append(
                 {
-                    "id": rate.oid,
+                    "0id": rate.oid,
                     "base_currency": base_currency,
                     "target_currency": target_currency,
                     "rate": rate.rate,
@@ -69,11 +69,25 @@ class ExchangeService(BaseService):
         target_currency_code: str,
         rate: Decimal,
     ):
-        ex_rates_dict = cls._check_pair(
+        ex_rates_dict = await cls._check_pair(
             code_base=base_currency_code, code_target=target_currency_code
         )
         base_currency = ex_rates_dict["base"]
         target_currency = ex_rates_dict["target"]
+        _query = select(cls._model).where(
+            and_(
+                cls._model.base_currency_oid == base_currency.oid,
+                cls._model.target_currency_oid == target_currency.oid,
+            )
+        )
+        try:
+            _ = await cls._transaction_one(_query)
+        except HTTPException as e:
+            ...
+        if _:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST, detail="Allready exists"
+            )
         exchange_rate = ExchangeRate(
             exchange_from=base_currency.oid,
             exchange_to=target_currency.oid,
@@ -97,7 +111,7 @@ class ExchangeService(BaseService):
             exchange_pair = ExchangePair(exchange_pair_raw.upper())
         except ApplicationError as e:
             raise HTTPException(status_code=400, detail=e.message)
-        ex_rates_dict = cls._check_pair(
+        ex_rates_dict = await cls._check_pair(
             code_base=exchange_pair.exchange_from, code_target=exchange_pair.exchange_to
         )
         base_currency = ex_rates_dict["base"]
@@ -120,7 +134,7 @@ class ExchangeService(BaseService):
         target_currency_code: str,
         amount: Decimal,
     ):
-        currency_pair_dict = cls._check_pair(
+        currency_pair_dict = await cls._check_pair(
             code_base=base_currency_code, code_target=target_currency_code
         )
         base_currency = currency_pair_dict["base"]

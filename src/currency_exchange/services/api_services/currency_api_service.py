@@ -4,7 +4,7 @@ from sqlalchemy import and_, insert, select
 
 from currency_exchange.domain.entity.currency import Currency
 from currency_exchange.gateways.database.models.currencies import Currencies
-from currency_exchange.services.base_api_service import BaseService
+from currency_exchange.services.api_services.base_api_service import BaseService
 
 
 class CurrencyService(BaseService):
@@ -15,11 +15,13 @@ class CurrencyService(BaseService):
         query = select(cls._model).where(
             and_(cls._model.code == code, cls._model.fullname == fullname)
         )
-        _currency = await cls._transaction_one(query)
-        if _currency:
+        try:
+            _ = await cls._transaction_one(query)
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST, detail="Allready exists"
             )
+        except HTTPException as e:
+            ...
 
         currency = Currency(name=fullname, code=code, sign=sign)
         query_add = (

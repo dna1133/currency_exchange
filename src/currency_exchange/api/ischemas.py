@@ -14,3 +14,15 @@ class ExchangePairArgs:
 
 class ErrorSchema(BaseModel):
     detail: str
+
+
+async def exchange_params(
+    exchange_from: str,
+    exchange_to: str,
+    amount: Decimal,
+):
+    return {
+        "exchange_from": exchange_from,
+        "exchange_to": exchange_to,
+        "amount": amount,
+    }

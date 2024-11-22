@@ -6,3 +6,6 @@ class CurrencySchema(BaseModel):
     code: str
     sign: str
     oid: str
+
+    class Config:
+        from_attributes = True
