@@ -69,6 +69,7 @@ class ExchangeService(BaseService):
         target_currency_code: str,
         rate: Decimal,
     ):
+        # print(f"{base_currency_code}, {target_currency_code}, {rate}")
         ex_rates_dict = await cls._check_pair(
             code_base=base_currency_code, code_target=target_currency_code
         )
@@ -80,6 +81,7 @@ class ExchangeService(BaseService):
                 cls._model.target_currency_oid == target_currency.oid,
             )
         )
+        _ = None
         try:
             _ = await cls._transaction_one(_query)
         except HTTPException as e:

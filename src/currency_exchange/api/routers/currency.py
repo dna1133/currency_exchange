@@ -13,8 +13,8 @@ from currency_exchange.services.api_services.currency_api_service import Currenc
 from currency_exchange.services.cache_services.redis_service import CacheService
 
 router = APIRouter(
-    prefix="/currensies",
-    tags=["currensies"],
+    prefix="/currenсies",
+    tags=["currenсies"],
 )
 
 log = logging.getLogger(__name__)

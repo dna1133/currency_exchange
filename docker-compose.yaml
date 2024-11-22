@@ -23,6 +23,15 @@ services:
         reservations:
           cpus: '0.25'
           memory: 256M
+  frontend:
+    build:
+      context: ./src/frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:5173" # Отображение сервера разработки
+    restart: on-failure
+    depends_on:
+      - app
   app:
     build:
       context: .

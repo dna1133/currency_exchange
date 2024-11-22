@@ -3,7 +3,7 @@ import logging
 from typing import Annotated
 from fastapi import APIRouter, Depends
 
-from currency_exchange.api.ischemas import ExchangePairArgs, exchange_params
+from currency_exchange.api.ischemas import exchange_params
 from currency_exchange.api.responses.exchange_resposes import (
     get_all_exchange_rates_responce,
     get_exchange_rate_responce,
