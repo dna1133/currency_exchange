@@ -15,13 +15,15 @@ class CurrencyService(BaseService):
         query = select(cls._model).where(
             and_(cls._model.code == code, cls._model.fullname == fullname)
         )
+        _ = False
         try:
             _ = await cls._transaction_one(query)
+        except HTTPException as e:
+            ...
+        if _:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST, detail="Allready exists"
             )
-        except HTTPException as e:
-            ...
 
         currency = Currency(name=fullname, code=code, sign=sign)
         query_add = (

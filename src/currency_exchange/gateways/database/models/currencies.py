@@ -6,6 +6,6 @@ class Currencies(Base):
     __tablename__ = "Currencies"
 
     oid = Column(String, primary_key=True)
-    code = Column(String, nullable=False)
+    code = Column(String, nullable=False, unique=True)
     fullname = Column(String, nullable=False)
     sign = Column(String, nullable=False)
