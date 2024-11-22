@@ -38,11 +38,7 @@ async def get_exchange_rate(
     exchange_rate: str,
     service: BaseService = Depends(ExchangeService),
 ):
-    try:
-        res = await service.get_exchange_rate(exchange_rate)
-    except ApplicationError as e:
-        raise HTTPException(status_code=400, detail=e)
-    return res
+    return await service.get_exchange_rate(exchange_rate)
 
 
 @router.post("/", responses=post_exchange_rate_responce)
@@ -63,10 +59,14 @@ async def post_exchange_rate(
 async def patch_exchange_rate(
     exchange_rate: str, rate: Decimal, service: BaseService = Depends(ExchangeService)
 ):
-    return await {}
+    return await service.patch_exchange_rate(exchange_pair_raw=exchange_rate, rate=rate)
 
 
 @router.get("/exchange", responses=get_exchange_sum_responce)
 @cache(expire=30)
-async def get_exchange_sum(exch: ExchangePairArgs = Depends()):
-    return {"exchange_from": exch.exchange_from, "exchange_to": exch.exchange_to}
+async def get_exchange_sum(
+    ext: ExchangePairArgs = Depends(), service: BaseService = Depends(ExchangeService)
+):
+    return await service.get_exchange_sum(
+        ext.exchange_from, ext.exchange_to, ext.amount
+    )

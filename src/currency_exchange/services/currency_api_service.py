@@ -15,10 +15,8 @@ class CurrencyService(BaseService):
         query = select(cls._model).where(
             and_(cls._model.code == code, cls._model.fullname == fullname)
         )
-        async with cls.db.get_read_only_session() as session:
-            raw_currency = await session.execute(query)
-
-        if raw_currency.scalars().all():
+        _currency = await cls._transaction_one(query)
+        if _currency:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST, detail="Allready exists"
             )
@@ -34,7 +32,5 @@ class CurrencyService(BaseService):
             )
             .returning(cls._model)
         )
-        async with cls.db.get_session() as session:
-            new_currensy = await session.execute(query_add)
-            await session.commit()
-            return new_currensy.scalars().all()
+        new_currensy = await cls._transaction_one(query_add, mode="rw")
+        return new_currensy

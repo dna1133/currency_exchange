@@ -29,12 +29,12 @@ async def get_all_currencies(
     return await service.get_all()
 
 
-@router.get("/{currency}", responses=get_currency_responce)
+@router.get("/{code}", responses=get_currency_responce)
 @cache(expire=30)
 async def get_currency_by_code(
-    currency: str, service: BaseService = Depends(CurrencyService)
+    code: str, service: BaseService = Depends(CurrencyService)
 ):
-    return await service.get_by_code(currency)
+    return await service.find_one(code=code.upper())
 
 
 @router.post("", responses=post_currency_responce)
@@ -44,4 +44,4 @@ async def post_currensies(
     sign: str,
     service: BaseService = Depends(CurrencyService),
 ):
-    return await service.add_currency(code, fullname, sign)
+    return await service.add_currency(code.upper(), fullname, sign)
