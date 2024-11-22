@@ -5,10 +5,6 @@ from typing import AsyncGenerator
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from redis.asyncio import Redis
-
-from fastapi_cache import FastAPICache
-from fastapi_cache.backends.redis import RedisBackend
 
 from currency_exchange.api.routers import exchange
 from currency_exchange.api.routers import currency
