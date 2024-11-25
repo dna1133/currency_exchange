@@ -10,15 +10,15 @@ Stack:
 fastapi-project
 ├── src
 │   ├── project_name
-│   │   ├── api    # API entrypoints (for routes, responses, schemas)
-│   │   ├── app    # Application  (for middwares, server, etc)
-│   │   ├── core   # Configs, DI_conteiner (Critical app data)
+│   │   ├── api    # API entrypoints
+│   │   ├── app    # Application 
+│   │   ├── core   # Configs, DI_conteiner 
 │   │   ├── domain 
-│   │   ├── gateways  # Outter layer (for databases, event streaming...)
+│   │   ├── gateways  # Outter layer
 │   │   ├── logs
-│   │   ├── services  # app services (for interaction app <-> outter layer)
+│   │   ├── services  # app services 
 │   │   └── main.py   # entrypoint
-│   └── frontend # example interaction frontend -> API entrypoints
+│   └── frontend
 ├── tests/
 ├── .env
 ├── .gitignore
