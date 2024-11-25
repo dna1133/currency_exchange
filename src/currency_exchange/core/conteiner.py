@@ -18,7 +18,8 @@ def _init_conteiner():
     db = Database(url=settings.POSTGRES_URL, ro_url=settings.POSTGRES_URL)
     container.register(BaseDB, Database, scope=punq.Scope.singleton, instance=db)
 
-    redis = Redis(host=settings.REDIS_HOST, port=settings.REDIS_PORT)
+    # redis = Redis(host=settings.REDIS_HOST, port=settings.REDIS_PORT)
+    redis = Redis.from_url(settings.REDIS_DSN.__str__())
     container.register(Redis, instance=redis, scope=punq.Scope.singleton)
 
     return container

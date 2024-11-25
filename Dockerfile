@@ -28,6 +28,9 @@ COPY . .
 
 RUN poetry install
 
-CMD ["poetry", "run", "start_app"]
+COPY entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
+
+ENTRYPOINT ["/app/entrypoint.sh"]
 
 EXPOSE 8000

@@ -1,3 +1,4 @@
+import asyncio
 from contextlib import asynccontextmanager
 import logging
 from typing import AsyncGenerator
@@ -5,11 +6,11 @@ from typing import AsyncGenerator
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-
 from currency_exchange.api.routers import exchange
 from currency_exchange.api.routers import currency
 
 from currency_exchange.core.configs import settings
+from currency_exchange.core.conteiner import get_conteiner
 from currency_exchange.core.logging.logger_setup import LoggerSetup
 
 log = logging.getLogger(__name__)
@@ -18,6 +19,7 @@ log = logging.getLogger(__name__)
 @asynccontextmanager
 async def lifespan(_app: FastAPI) -> AsyncGenerator:
     logger_setup = LoggerSetup()
+    conteiner = get_conteiner()
     log.info("--- APP started")
     yield
     log.info("--- APP down")
@@ -29,7 +31,11 @@ app.include_router(currency.router)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:5173"],
+    allow_origins=[
+        "http://0.0.0.0:3000",
+        "http://localhost:5173",
+        "http://localhost:3000",
+    ],
     allow_methods=["*"],
     allow_headers=["*"],
 )
