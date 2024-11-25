@@ -9,5 +9,5 @@ ENV = --env-file .env
 app:
 	poetry run start_app
 
-d_up:
+up:
 	${DC} ${ENV} up --build

@@ -2,6 +2,11 @@
 
 set -e 
 
+if [ ! -f ".env" ]; then
+    cp example.env .env
+    echo "example.env скопирован в .env"
+fi
+
 echo "Applying migrations..."
 poetry run alembic upgrade head
 
