@@ -3,7 +3,7 @@
 set -e 
 
 if [ ! -f ".env" ]; then
-    cp example.env .env
+    cp .env.example .env
     echo "example.env скопирован в .env"
 fi
 
