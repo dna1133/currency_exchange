@@ -7,18 +7,19 @@ Stack:
   - Migrations (alembic)
 
 ## Structure
+```
 fastapi-project
 ├── src
 │   ├── project_name
-│   │   ├── api    # API entrypoints
-│   │   ├── app    # Application 
-│   │   ├── core   # Configs, DI_conteiner 
+│   │   ├── api    # API entrypoints (for routes, responses, schemas)
+│   │   ├── app    # Application  (for middwares, server, etc)
+│   │   ├── core   # Configs, DI_conteiner (Critical app data)
 │   │   ├── domain 
-│   │   ├── gateways  # Outter layer
+│   │   ├── gateways  # Outter layer (for databases, event streaming...)
 │   │   ├── logs
-│   │   ├── services  # app services 
+│   │   ├── services  # app services (for interaction app <-> outter layer)
 │   │   └── main.py   # entrypoint
-│   └── frontend
+│   └── frontend # example interaction frontend -> API entrypoints
 ├── tests/
 ├── .env
 ├── .gitignore
@@ -28,6 +29,7 @@ fastapi-project
 ├── Dockerfile
 ├── docker-compose.yaml
 └── README.MD
+```
 
 ### Start project
 ```sh
