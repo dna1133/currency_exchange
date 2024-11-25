@@ -1,6 +1,5 @@
 import logging
 from fastapi import APIRouter, Depends
-from fastapi.encoders import jsonable_encoder
 
 from currency_exchange.api.responses.currency_responses import (
     get_currencies_responce,

@@ -1,4 +1,3 @@
-from abc import ABC
 from dataclasses import dataclass
 
 from currency_exchange.domain.entity.base import BaseEntity
