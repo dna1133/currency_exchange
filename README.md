@@ -12,7 +12,7 @@ fastapi-project
 ├── src
 │   ├── project_name
 │   │   ├── api    # API entrypoints (for routes, responses, schemas)
-│   │   ├── app    # Application  (for middwares, server, etc)
+│   │   ├── app    # Application  (for middlware, server, etc)
 │   │   ├── core   # Configs, DI_conteiner (Critical app data)
 │   │   ├── domain 
 │   │   ├── gateways  # Outter layer (for databases, event streaming...)
