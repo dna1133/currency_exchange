@@ -7,5 +7,6 @@ class AppSettings(BaseSettings):
     APPLICATION_HOST: str
     APPLICATION_PORT: int
     APPLICATION_WORKERS: int
+    ALLOWED_HOSTS: list[str]
 
     EXCHANGE_RATE_LEN: int

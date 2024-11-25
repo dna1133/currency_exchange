@@ -30,11 +30,7 @@ app.include_router(currency.router)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://0.0.0.0:3000",
-        "http://localhost:5173",
-        "http://localhost:3000",
-    ],
+    allow_origins=settings.ALLOWED_HOSTS,
     allow_methods=["*"],
     allow_headers=["*"],
 )

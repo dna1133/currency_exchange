@@ -7,12 +7,12 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     restart: on-failure
-    environment:
-      - ${POSTGRES_NAME:?}
-      - ${POSTGRES_HOST:?}
-      - ${POSTGRES_USER:?}
-      - ${POSTGRES_PASSWORD:?}
-      - ${POSTGRES_DB:?}
+    # environment:
+    #   - ${POSTGRES_NAME:?}
+    #   - ${POSTGRES_HOST:?}
+    #   - ${POSTGRES_USER:?}
+    #   - ${POSTGRES_PASSWORD:?}
+    #   - ${POSTGRES_DB:?}
     ports:
       - "5432:5432"
     networks:
