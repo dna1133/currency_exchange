@@ -13,20 +13,20 @@ class BaseService:
     @classmethod
     async def find_one(cls, **filter_by):
         query = select(cls._model).filter_by(**filter_by)
-        resalt = await cls._transaction_one(query)
-        return resalt
+        result = await cls._transaction_one(query)
+        return result
 
     @classmethod
     async def find_many(cls, **filter_by):
         query = select(cls._model).filter_by(**filter_by)
-        resalt = await cls._transaction_many(query)
-        return resalt
+        result = await cls._transaction_many(query)
+        return result
 
     @classmethod
     async def get_all(cls):
         query = select(cls._model)
-        resalt = await cls._transaction_many(query)
-        return resalt
+        result = await cls._transaction_many(query)
+        return result
 
     @classmethod
     async def _transaction_one(
